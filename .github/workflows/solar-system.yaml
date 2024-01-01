@@ -18,9 +18,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: chekout Repository
-          uses: actions/checkout@4
+          uses: actions/checkout@v4
         
-        - name: setup Nodejs version -18
+        - name: setup Nodejs version - 18
           uses: actions/setup-nodes@v3
           with:
             node version: 18
