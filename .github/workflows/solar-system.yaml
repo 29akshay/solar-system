@@ -28,6 +28,6 @@ jobS:
         - name: install dependancy
           run: npm install
 
-        -name: unit testing
-         run: npm test
+        - name: unit testing
+          run: npm test
     
