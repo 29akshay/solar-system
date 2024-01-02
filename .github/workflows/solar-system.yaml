@@ -12,7 +12,7 @@ env:
     MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
     MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
 
-jobS:
+jobs:
     unit-testing:
         name: unit testing
         runs-on: ubuntu-latest
@@ -28,6 +28,33 @@ jobS:
         - name: install dependancy
           run: npm install
 
-        -name: unit testing
-         run: npm test
-    
+        - name: unit testing
+          run: npm test
+
+    code-coverage:
+        name: code coverage
+        runs-on: ubuntu-latest
+        steps:
+        -  name: checkout Repsitory
+           uses: actions/checkout@v4
+
+        -  name: setups nodes version -18
+           uses: actions/setup-nodes@v3
+           with:
+            node version: 18
+            
+        - name: install dependancy
+          uses: npm install
+
+        - name: check code coverage
+          run:  npm run coverage
+
+        - name: archive  test result
+          uses: actions/upload-artifacts@v3
+          with:
+            name: code-coverage-result
+            path: coverage
+            retention-days: 5
+
+
+
